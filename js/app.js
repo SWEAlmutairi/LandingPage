@@ -28,8 +28,10 @@ const listItem2 = document.createElement("li");
 const listItem3 = document.createElement("li");
 const listItem4 = document.createElement("li");
 // get all sections on the page
-const sections = document.querySelectorAll('section');
-
+const sectionsss = document.querySelectorAll('section');
+// new after feedback:
+const sections = Array.from(document.getElementsByTagName("section"));
+const menu = document.getElementById('navbar__list');
 /**
  * End Global Variables
  * Start Helper Functions
@@ -37,11 +39,20 @@ const sections = document.querySelectorAll('section');
  */
 
 // Set attribute for all List Elements
-listItem1.setAttribute('class','menu__link');
-listItem2.setAttribute('class','menu__link');
-listItem3.setAttribute('class','menu__link');
-listItem4.setAttribute('class','menu__link');
+// listItem1.setAttribute('class','menu__link');
+// listItem2.setAttribute('class','menu__link');
+// listItem3.setAttribute('class','menu__link');
+// listItem4.setAttribute('class','menu__link');
+// new after feedback:
 
+for(let section of sections) {
+    const listItem = document.createElement('li');
+    const listItemLink = document.createElement('a');
+    // comment here
+    listItemLink.textContent = section.dataset.nav;
+    listItem.appendChild(listItemLink);
+    menu.appendChild(listItem);
+}
 /**
  * End Helper Functions
  * Begin Main Functions
