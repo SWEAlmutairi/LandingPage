@@ -19,61 +19,30 @@
  */
 
 /**
- * Define Global Variables
+ * start with dynamic navigator
  * 
  */
-// Creat 4 List Elements
-const listItem1 = document.createElement("li");
-const listItem2 = document.createElement("li");
-const listItem3 = document.createElement("li");
-const listItem4 = document.createElement("li");
-// get all sections on the page
-const sectionsss = document.querySelectorAll('section');
-// new after feedback:
+// getting All sections in an Array & ul Element 
 const sections = Array.from(document.getElementsByTagName("section"));
 const menu = document.getElementById('navbar__list');
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
 
-// Set attribute for all List Elements
-// listItem1.setAttribute('class','menu__link');
-// listItem2.setAttribute('class','menu__link');
-// listItem3.setAttribute('class','menu__link');
-// listItem4.setAttribute('class','menu__link');
-// new after feedback:
-
+// Adding li and a with them attributes
 for(let section of sections) {
     const listItem = document.createElement('li');
     const listItemLink = document.createElement('a');
-    // comment here
+    // using the section data-nav to fill the <a> tag
     listItemLink.textContent = section.dataset.nav;
+    listItemLink.setAttribute('data-target',`${section.id}`);
+    listItemLink.setAttribute('class', 'menu__link');
+    // append a to the li
     listItem.appendChild(listItemLink);
+    // append li to ul Element
     menu.appendChild(listItem);
 }
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-// add innerHtml to all List Elements
-listItem1.innerHTML = "<a class='list list1' data-target='section1'>Section 1</a>";
-listItem2.innerHTML = "<a class='list list2' data-target='section2'>Section 2</a>";
-listItem3.innerHTML = "<a class='list list3' data-target='section3'>Section 3</a>";
-listItem4.innerHTML = "<a class='list list4' data-target='section4'>Section 4</a>";
-// select nav bar to append List Elements to it
-const selector = document.getElementById(`navbar__list`);
 
-// build the nav
-selector.appendChild(listItem1);
-selector.appendChild(listItem2);
-selector.appendChild(listItem3);
-selector.appendChild(listItem4);
-
-// Add class 'active' to section when near top of viewport
-window.addEventListener('scroll', (e) => {
+// Add class 'active' to section & nav_bar item when near top of viewport
+const anchors = document.querySelectorAll("ul li a");
+window.addEventListener('scroll', () => {
     // loop through each section of the page
     // arrow function
     sections.forEach( section => {
@@ -81,7 +50,14 @@ window.addEventListener('scroll', (e) => {
         const nearTop = section.getBoundingClientRect().top;
         // if nearTop < 300px then 
         // Set sections as active
-        if (nearTop > 0 && nearTop < 300) {
+        if (nearTop > -50 && nearTop < 400) {
+            // Adding 'active' to nav_bar item 
+            anchors.forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.target === section.id)
+                    item.classList.add('active');
+            })
+            // Adding 'active' to section
             section.classList.add('your-active-class');
             // IF NOT remove the class
         } else {
@@ -89,18 +65,18 @@ window.addEventListener('scroll', (e) => {
         }
     });
 });
-
-// Scroll to anchor ID using scrollTO event
-document.addEventListener('click',function (event) {
+// Scroll to anchor ID using scrollIntoView event
+    document.addEventListener('click', function (event) {
         // if it is not List Item
-        if (!event.target.matches('.list')) return;
+        if (!event.target.matches('.menu__link')) return;
         // IF it is List Item
         event.preventDefault();
         const item = document.getElementById(event.target.dataset.target);
         item.scrollIntoView({behavior: 'smooth', block: "start"});
     });
+
 /**
- * End Main Functions
+ * End  
  *
  */
 

@@ -7,11 +7,20 @@
 - [Adding New Features](#Adding-new-features)
 - [Footer](#Footer)
 
-## Instructions
+##  description
 
 This  project has some HTML and CSS styling to display a static version of the Landing Page project. And I've added some js code, so it became dynamic.
 - [(Back to top)](#Table-of-Contents)
 
+### Instructions
+
+ * you can use this project as a dynamic landing page in your projects.
+- [(Back to top)](#Table-of-Contents)
+### Technologies used
+1. Html
+2. CSS
+3. Js
+- [(Back to top)](#Table-of-Contents)
 ### Usage
 - You can find js code in app.js file.
 
@@ -23,6 +32,9 @@ This  project has some HTML and CSS styling to display a static version of the L
 3. I made navbar anchors scroll into view when clicked.
    [(Back to top)](#Table-of-Contents)
 
+### Author
+- Written by SWE.Ahmed.
+- [(Back to top)](#Table-of-Contents)
 # Footer
 HTML AND CSS CODE WAS WRITTEN BY UDACITY.
-I ONLY MADE JS CODE.
+I ONLY WROTE JS CODE.
